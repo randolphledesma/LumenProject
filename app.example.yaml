@@ -1,0 +1,19 @@
+runtime: php55
+api_version: 1
+
+inbound_services:
+- warmup
+
+handlers:
+- url: /_ah/warmup
+  script: warmup.php
+  login: admin
+- url: /.*
+  script: public/index.php
+
+env_variables:
+  APP_ENV: 'production'
+  APP_DEBUG: 'false'
+  APP_KEY: 'SomeRandomCharactersHere'
+  CACHE_DRIVER: 'memcached'
+  QUEUE_DRIVER: 'sync'
